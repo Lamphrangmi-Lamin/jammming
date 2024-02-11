@@ -4,9 +4,10 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import { useState } from 'react';
+import Spotify from '../../util/Spotify';
 
 function App() {
-  const [searchResults] = useState([
+  const [searchResults, setSearchResults] = useState([
     {
       uri: 1,
       id: 1,
@@ -32,7 +33,7 @@ function App() {
 
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
-
+  
   const addTrack = (track) => {
     const found = playlistTracks.find(savedTrack => (savedTrack.id === track.id));
     if (found) {
@@ -55,7 +56,11 @@ function App() {
     console.log(playlistName);
   };
 
-  const search = (term) => console.log(term);
+  const search = (term) => {
+    Spotify.search(term).then(data => {
+      setSearchResults(data);
+    });
+  };
 
   return (
     <div>
