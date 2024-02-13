@@ -42,6 +42,96 @@ const Spotify = {
             album: track.album.name,
             uri: track.uri
         }))
+    },
+
+    // savePlaylist: (playlistName, trackURIs) => {
+    //     if (!(playlistName && trackURIs)) {
+    //         return;
+    //     }
+    //     const accessToken = Spotify.getAccessToken();
+    //     const headers = {
+    //         Authorization: `Bearer ${accessToken}`,
+    //     };
+    //     let userId;
+    //     let playlistID;
+
+    //     fetch("https://api.spotify.com/v1/me", {
+    //         headers: headers
+    //     })
+    //     .then(response => response.json())
+    //     .then(jsonResponse => {
+    //         userId = jsonResponse.id;
+    //         return userId;
+    //     })
+
+    //     fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+    //         method: "POST",
+    //         headers: headers,
+    //         body: JSON.stringify({
+    //             name: playlistName,
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(jsonResponse => {
+    //         playlistID = jsonResponse.id;
+    //         return playlistID;
+    //     })
+
+    //     fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {
+    //         method: 'POST',
+    //         headers: headers,
+    //         body: JSON.stringify({
+    //             'uris': trackURIs
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(jsonResponse => {
+    //         playlistID = jsonResponse.id;
+    //         return playlistID;
+    //     })
+    // }
+
+    savePlaylist: async (name, uris) => {
+        if (!(name && uris)) {
+            return;
+        }
+
+        try {
+            const accessToken = Spotify.getAccessToken();
+            const headers = {
+                Authorization: `Bearer ${accessToken}`
+            };
+
+            // GET userID from the server
+            const userResponse = await fetch(`https://api.spotify.com/v1/me`, {
+                headers: headers
+            });
+            const userData = await userResponse.json();
+            const userID = userData.id;
+
+            //create playlist and receive a playlistID from the server
+            const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                    name: name
+                })
+            });
+            const playlistData = await playlistResponse.json();
+            const playlistID = playlistData.id;
+
+            //Add tracks to the playlist to the playlistID
+            await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                    uris: uris
+                })
+            })
+            
+        } catch (error) {
+            alert("ERROR in saving playlist", error);
+        }
     }
 
 };

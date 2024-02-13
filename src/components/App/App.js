@@ -53,6 +53,7 @@ function App() {
   const savePlaylist = () => {
     const trackURIs = playlistTracks.map(track => track.uri);
     console.log(trackURIs);
+    Spotify.savePlaylist(playlistName, trackURIs)
     console.log(playlistName);
   };
 
