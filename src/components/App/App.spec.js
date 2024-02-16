@@ -1,30 +1,11 @@
-function plusTwo(x) {
-    return x + 2;
-};
+import React from "react";
+import renderer from "react-test-renderer"
+import App from "./App";
 
-console.log(plusTwo(8));
-
- describe('plusTwo', () => {
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(8)).toBe(10);
+describe('App', () => {
+    test('snapshot renders', () => {
+        const component = renderer.create(<App/>);
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     })
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(10)).toBe(12);
-    })
- })
- describe('plusTwo', () => {
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(8)).toBe(10);
-    })
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(10)).toBe(12);
-    })
- })
- describe('plusTwo', () => {
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(8)).toBe(10);
-    })
-    it('add 2 to any value of x', () => {
-        expect(plusTwo(10)).toBe(12);
-    })
- })
+})

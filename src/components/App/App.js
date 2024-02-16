@@ -51,10 +51,13 @@ function App() {
   const updatePlaylistName = (name) => setPlaylistName(name);
 
   const savePlaylist = () => {
+    if (!playlistTracks.length) {
+      return alert("PLEASE ADD SOME TRACKS \u{1F60A}");
+    };
     const trackURIs = playlistTracks.map(track => track.uri);
-    console.log(trackURIs);
-    Spotify.savePlaylist(playlistName, trackURIs)
-    console.log(playlistName);
+    Spotify.savePlaylist(playlistName, trackURIs);
+    setPlaylistTracks([]);
+    setPlaylistName("New Playlist");
   };
 
   const search = (term) => {
