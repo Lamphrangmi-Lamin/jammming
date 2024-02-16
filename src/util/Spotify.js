@@ -40,56 +40,10 @@ const Spotify = {
             name: track.name,
             artist: track.artists[0].name,
             album: track.album.name,
-            uri: track.uri
+            uri: track.uri,
+            image: track.album.images[0].url
         }))
     },
-
-    // savePlaylist: (playlistName, trackURIs) => {
-    //     if (!(playlistName && trackURIs)) {
-    //         return;
-    //     }
-    //     const accessToken = Spotify.getAccessToken();
-    //     const headers = {
-    //         Authorization: `Bearer ${accessToken}`,
-    //     };
-    //     let userId;
-    //     let playlistID;
-
-    //     fetch("https://api.spotify.com/v1/me", {
-    //         headers: headers
-    //     })
-    //     .then(response => response.json())
-    //     .then(jsonResponse => {
-    //         userId = jsonResponse.id;
-    //         return userId;
-    //     })
-
-    //     fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-    //         method: "POST",
-    //         headers: headers,
-    //         body: JSON.stringify({
-    //             name: playlistName,
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(jsonResponse => {
-    //         playlistID = jsonResponse.id;
-    //         return playlistID;
-    //     })
-
-    //     fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistID}/tracks`, {
-    //         method: 'POST',
-    //         headers: headers,
-    //         body: JSON.stringify({
-    //             'uris': trackURIs
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(jsonResponse => {
-    //         playlistID = jsonResponse.id;
-    //         return playlistID;
-    //     })
-    // }
 
     savePlaylist: async (name, uris) => {
         if (!(name && uris)) {

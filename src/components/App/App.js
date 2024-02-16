@@ -13,21 +13,24 @@ function App() {
       id: 1,
       name: "Shape of You",
       artist: "Ed Sheeran",
-      album: "÷ (Divide)"
+      album: "÷ (Divide)",
+      image: "src"
     },
     {
       uri: 2,
       id: 2,
       name: "Blinding Lights",
       artist: "The Weeknd",
-      album: "After Hours"
+      album: "After Hours",
+      image: "src"
     },
     {
       uri: 3,
       id: 3,
       name: "Rolling in the Deep",
       artist: "Adele",
-      album: "21"
+      album: "21",
+      image: "src"
     }
   ]);
 
