@@ -48,6 +48,7 @@ function App() {
   const removeTrack = (track) => {
     const filteredTrackList = playlistTracks.filter(t => t.id !== track.id);
     setPlaylistTracks(filteredTrackList);
+    setSearchResults(searchResults.concat(track));
   };
 
   const updatePlaylistName = (name) => setPlaylistName(name);
