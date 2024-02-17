@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './SearchBar.css';
 
 export default function SearchBar(props) {
-    const [searchTerm,  setSearchTerm] = useState('Chris Tomlin');
+    const [searchTerm,  setSearchTerm] = useState('');
 
     const passTerm = () => props.onSearch(searchTerm);
 

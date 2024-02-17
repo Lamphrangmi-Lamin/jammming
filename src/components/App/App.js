@@ -39,10 +39,9 @@ function App() {
   
   const addTrack = (track) => {
     const found = playlistTracks.find(savedTrack => (savedTrack.id === track.id));
-    if (found) {
-      alert("TRACK ALREADY EXIST");
-    } else {
+    if (!found) {
       setPlaylistTracks(playlistTracks => playlistTracks.concat(track));
+      setSearchResults(searchResults.filter(obj => obj.id !== track.id));
     }
   };
 

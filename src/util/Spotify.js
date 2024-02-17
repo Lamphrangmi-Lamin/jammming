@@ -33,6 +33,7 @@ const Spotify = {
         });
         const jsonResponse = await response.json();
         if (!jsonResponse.tracks) {
+            alert(`NO RESULTS FOUND FOR ${term}`);
             return [];
         }
         return jsonResponse.tracks.items.map(track => ({
