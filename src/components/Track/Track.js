@@ -11,7 +11,7 @@ function Track(props) {
 
   return (
     <div className="Track" id={props.id} key={props.id}>
-      <img src={props.image} />
+      <img src={props.image} alt='album image' />
       <div className="Track-information">
         <h3>{props.name}</h3>
         <p>{props.artist} | {props.album}</p>
